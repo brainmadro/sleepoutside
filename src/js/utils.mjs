@@ -47,3 +47,10 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+// New function to get URL parameters
+export function getParams(param) {
+  const queryString = window.location.search; // Get the query string from the URL
+  const urlParams = new URLSearchParams(queryString); // Parse the query string
+  return urlParams.get(param); // Get the parameter value
+}
