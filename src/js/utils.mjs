@@ -7,22 +7,8 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  const data = localStorage.getItem(key);
-  if (data) {
-    try {
-      const parsedData = JSON.parse(data);
-      if (Array.isArray(parsedData)) {
-        return parsedData;
-      } else {
-        console.warn(`${key} Error!!!`);
-        return [];
-      }
-    } catch (e) {
-      console.error(`Error parsed ${key}:`, e);
-      return [];
-    }
-  }
-  return [];
+  const data = localStorage.getItem(key)
+  return data ? JSON.parse(data) : [];
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
