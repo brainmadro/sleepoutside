@@ -7,10 +7,27 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  const data = localStorage.getItem(key);
+  if (data) {
+    try {
+      // Intenta parsear el contenido y verificar si es un arreglo
+      const parsedData = JSON.parse(data);
+      if (Array.isArray(parsedData)) {
+        return parsedData;
+      } else {
+        console.warn(`${key} no es un arreglo, devolviendo un arreglo vacío.`);
+        return [];
+      }
+    } catch (e) {
+      console.error(`Error al parsear ${key}:`, e);
+      return [];
+    }
+  }
+  return []; // Si no existe el item en el localStorage, devolvemos un arreglo vacío
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
+  console.log(`Guardando en localStorage: ${key}`, data); 
   localStorage.setItem(key, JSON.stringify(data));
 }
 
