@@ -1,3 +1,5 @@
+import { renderListWithTemplate } from "./utils.mjs";
+
 function productCardTemplate(product){
     return `<li class="product-card">
     <a href="product_pages/index.html?product=${product.id}">
@@ -26,6 +28,6 @@ export default class ProductListing {
     
 }
 
-// function filterList(list, count) {
-//     return list.slice(0,count)
-// }
+function filterList(list, count) {
+    return list.slice(0,count)
+}
