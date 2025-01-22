@@ -10,6 +10,8 @@ function productCardTemplate(product){
     </li>`;
 }
 
+
+
 export default class ProductListing {
     constructor(category, dataSource, listElement){
         this.category = category;
@@ -25,9 +27,7 @@ export default class ProductListing {
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
-    
-}
-
-function filterList(list, count) {
-    return list.slice(0,count)
+    filterList(list, count) {
+        return list.slice(0,count)
+    }
 }
