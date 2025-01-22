@@ -51,6 +51,21 @@ export function renderListWithTemplate(
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
+export function renderWithTemplate(templateFn, parentElement, data, callback) {
+  const htmlStrings = list.map(templateFn);
+  parentElement.insertAdjacentHTML("afterbegin", template);
+  if(callback) {
+    callback(data)
+  }
+}
+
+export async function loadHeaderFooter(path) {
+  const html = await fetch(path).then(convertToText);
+  const template = document.createElement("template");
+  template.innerHTML = html;
+  return template;
+}
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
