@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage } from "./utils.mjs";
 
   function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
@@ -25,7 +25,7 @@ export default class ShoppingCart {
         this.parentSelector = parentSelector;
     }
     renderCartContents() {
-        const cartItems = getLocalStorage(this.key);
+        const cartItems = getLocalStorage("so-cart") || [];
         const htmlItems = cartItems.map((item) => cartItemTemplate(item));
          document.querySelector(".product-list").innerHTML = htmlItems.join("");
      }
