@@ -2,28 +2,25 @@
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
-// retrieve data from localstorage
 export function getLocalStorage(key) {
   const data = localStorage.getItem(key);
   if (data) {
     try {
-      // Intenta parsear el contenido y verificar si es un arreglo
       const parsedData = JSON.parse(data);
       if (Array.isArray(parsedData)) {
         return parsedData;
       } else {
-        console.warn(`${key} no es un arreglo, devolviendo un arreglo vacío.`);
+        console.warn(`${key} Error!!!`);
         return [];
       }
     } catch (e) {
-      console.error(`Error al parsear ${key}:`, e);
+      console.error(`Error parsed ${key}:`, e);
       return [];
     }
   }
-  return []; // Si no existe el item en el localStorage, devolvemos un arreglo vacío
+  return [];
+  
 }
 // save data to local storage
 export function setLocalStorage(key, data) {

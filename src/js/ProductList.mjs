@@ -23,9 +23,9 @@ export default class ProductListing {
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
-
+    
 }
 
-function filterList(list, count) {
-    return list.slice(0,count)
-}
+// function filterList(list, count) {
+//     return list.slice(0,count)
+// }
