@@ -23,7 +23,6 @@ export function getLocalStorage(key) {
     }
   }
   return [];
-  
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
