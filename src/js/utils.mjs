@@ -24,7 +24,6 @@ export function getLocalStorage(key) {
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
-  console.log(`Guardando en localStorage: ${key}`, data); 
   localStorage.setItem(key, JSON.stringify(data));
 }
 
