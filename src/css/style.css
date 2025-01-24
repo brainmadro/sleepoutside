@@ -147,6 +147,16 @@ button {
   margin: 0.5em 0;
 }
 
+.product-card__discount {
+  background-color: #1FA923;
+  border-radius: 50%;
+  color: #fff;
+  text-align: right;
+  padding: 1.4em 1em;
+  position: absolute;
+  right: 1px;
+}
+
 .card__brand {
   font-size: var(--small-font);
 }
@@ -160,6 +170,7 @@ button {
   padding: 1em;
   max-width: 500px;
   margin: auto;
+  position: relative;
 }
 
 .product-detail img {
