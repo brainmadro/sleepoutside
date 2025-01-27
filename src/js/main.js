@@ -1,8 +1,8 @@
-import ProductListing from './ProductList.mjs';
-import ProductData from './ProductData.mjs';
+import ProductData from "./ProductData.mjs";
+import ProductList from "./ProductList.mjs";
 
-const dataSource = new ProductData('/json/tents.json'); // Adjust the path if needed
-const listElement = document.querySelector('#product-list'); // The target element for the product list
-const productListing = new ProductListing('tents', dataSource, listElement);
+const dataSource = new ProductData("tents");
+const element = document.querySelector(".product-list");
+const listing = new ProductList("Tents", dataSource, element);
 
-productListing.init();
+listing.init();
