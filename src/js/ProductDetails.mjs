@@ -5,7 +5,7 @@ function productDetailsTemplate(product) {
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryLarge}"
       alt="${product.NameWithoutBrand}"
     />
     ${product.Discount ? "<p class='product-card__discount'>" + product.Discount + "%</p>" : '' }
@@ -49,3 +49,4 @@ export default class ProductDetails {
     );
   }
 }
+

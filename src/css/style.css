@@ -212,7 +212,28 @@ button {
   grid-row: 2;
   grid-column: 3;
 }
+.picons{
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  padding: 0px;
+  font-size: 10px;
+  text-align: center;
+  align-items: center;
+}
 
+.picons li a{
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+}
+.picons li{
+  margin: 10px;
+  text-decoration: none;
+  list-style-type: none;
+}
+ul.picons li img{
+  padding: 0px;
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -224,6 +245,15 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+  ul.picons li img{
+    margin: 40px;
+    
+  }
+  ul.picons li h2{
+    text-align: center;
+    text-decoration: none;
+    color: black;
   }
 }
 
