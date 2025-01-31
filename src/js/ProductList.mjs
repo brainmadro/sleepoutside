@@ -33,6 +33,10 @@ export default class ProductListing {
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
+    async init() {
+        const list = await this.dataSource.getData(this.category);
+        this.renderList(list);
+      }
 }
 
 
