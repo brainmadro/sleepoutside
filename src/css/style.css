@@ -30,6 +30,17 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
+input[type="text"],
+input[type="number"] {
+  border: 1px solid var(--light-grey);
+  font-size: var(--font-base);
+  padding: 0.5em;
+}
+label[for^="checkout--"] {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 1em 0;
+}
 .logo {
   line-height: 60px;
   width: 245px;
@@ -238,28 +249,20 @@ button {
   grid-row: 2;
   grid-column: 3;
 }
-.picons {
-  display: grid;
-  grid-template-columns: repeat(4, 25%);
-  padding: 0px;
-  font-size: 10px;
-  text-align: center;
-  align-items: center;
+.checkout__form form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10%;
+}
+.checkout__form form button[type="submit"] {
+  margin: 1em auto;
 }
 
-.picons li a {
-  margin: 10px;
-  text-decoration: none;
-  color: black;
+.summary__items {
+  color: var(--secondary-color);
+  font-size: var(--small-font);
 }
-.picons li {
-  margin: 10px;
-  text-decoration: none;
-  list-style-type: none;
-}
-ul.picons li img {
-  padding: 0px;
-}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
