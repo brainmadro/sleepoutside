@@ -7,19 +7,22 @@ loadHeaderFooter();
 cart.renderCartContents();
 
 document.addEventListener("DOMContentLoaded", function () {
-    const cartp = JSON.parse(localStorage.getItem("so-cart")) || [];
-    console.log(cartp)
-    const cartTotalElement = document.getElementById("cart-total");
+  const cartp = JSON.parse(localStorage.getItem("so-cart")) || [];
+  console.log(cartp);
+  const cartTotalElement = document.getElementById("cart-total");
 
-    if (cartp.length > 0) {
-      cartTotalElement.style.display = "block"; // Show the element
+  if (cartp.length > 0) {
+    cartTotalElement.style.display = "block"; // Show the element
 
-      // Calculate total price
-      const total = cartp.reduce((sum, item) => sum + item.FinalPrice * item.Quantity, 0);
+    // Calculate total price
+    const total = cartp.reduce(
+      (sum, item) => sum + item.FinalPrice * item.Quantity,
+      0
+    );
 
-      // Insert total into the element
-      cartTotalElement.innerHTML = `<p>Total: $${total.toFixed(2)}</p>`;
+    // Insert total into the element
+    cartTotalElement.innerHTML = `<p>Total: $${total.toFixed(2)}</p>`;
   } else {
-      cartTotalElement.style.display = "none"; // Hide if empty
+    cartTotalElement.style.display = "none"; // Hide if empty
   }
-  });
+});
