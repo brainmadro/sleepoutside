@@ -36,6 +36,11 @@ input[type="number"] {
   font-size: var(--font-base);
   padding: 0.5em;
 }
+label[for^="checkout--"] {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 1em 0;
+}
 .logo {
   line-height: 60px;
   width: 245px;
@@ -252,10 +257,10 @@ button {
 .checkout__form form button[type="submit"] {
   margin: 1em auto;
 }
-label[for^="checkout--"] {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 1em 0;
+
+.summary__items {
+  color: var(--secondary-color);
+  font-size: var(--small-font);
 }
 
 @media screen and (min-width: 500px) {
