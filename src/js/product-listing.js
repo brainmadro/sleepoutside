@@ -1,15 +1,13 @@
 import ProductData from "./ProductData.mjs";
-import ProductListing from "./ProductList.mjs";
-import { loadHeaderFooter, getParam } from "./utils.mjs";
+import ProductList from "./ProductList.mjs";
+import { loadHeaderFooter, getParam } from './utils.mjs';
+
+const category = getParam('category');
+const dataSource = new ProductData();
+const title = document.querySelector("#category-title");
+const listElement = document.querySelector(".product-list");
+const listing = new ProductList(category, dataSource, listElement);
 
 loadHeaderFooter();
-
-const category = getParam("category");
-const dataSource = new ProductData();
-// const title = category.charAt(0).toUpperCase() + category.slice(1);
-// document.querySelector(".title").textContent = title;
-const listElement = document.querySelector('.product-list');
-// then create an instance of our ProductList class and send it the correct information.
-const myList = new ProductListing(category, dataSource, listElement);
-// finally call the init method to show our products
-myList.init();
+title.textContent = category.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+listing.init();

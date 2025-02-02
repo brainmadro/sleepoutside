@@ -120,8 +120,34 @@ button {
   margin: auto;
 }
 .products {
+  display: flex;
+  justify-content: center;
   padding: 0.5em;
 }
+.product-category {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-category:any-link,
+.product-category span {
+  color: var(--dark-grey);
+  text-decoration: none;
+}
+
+.product-category img {
+  max-width: 3rem;
+}
+
+.products_content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6em;
+  width: fit-content;
+}
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
@@ -148,7 +174,7 @@ button {
 }
 
 .product-card__discount {
-  background-color: #1FA923;
+  background-color: #1fa923;
   border-radius: 50%;
   color: #fff;
   text-align: right;

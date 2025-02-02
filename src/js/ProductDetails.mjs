@@ -38,7 +38,13 @@ export default class ProductDetails {
   }
   addToCart() {
     const cartItems = getLocalStorage("so-cart") || [];
-    cartItems.push(this.product);
+    const inCart = cartItems.some((item) => item.Id === this.product.Id);
+    if (inCart) {
+      cartItems[cartItems.findIndex((item) => item.Id === this.product.Id)].Quantity += 1;
+    } else {
+      this.product.Quantity = 1;
+      cartItems.push(this.product);
+    }
     setLocalStorage("so-cart", cartItems);
   }
   renderProductDetails(selector) {
