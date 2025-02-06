@@ -30,6 +30,17 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
+input[type="text"],
+input[type="number"] {
+  border: 1px solid var(--light-grey);
+  font-size: var(--font-base);
+  padding: 0.5em;
+}
+label[for^="checkout--"] {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 1em 0;
+}
 .logo {
   line-height: 60px;
   width: 245px;
@@ -237,6 +248,26 @@ button {
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+}
+
+.cart_header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout__form form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10%;
+}
+.checkout__form form button[type="submit"] {
+  margin: 1em auto;
+}
+
+.summary__items {
+  color: var(--secondary-color);
+  margin: 0;
 }
 
 @media screen and (min-width: 500px) {

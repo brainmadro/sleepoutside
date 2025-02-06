@@ -8,14 +8,95 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
 
   <body>
     <header class="divider" id="main-header"></header>
     <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
+      <section class="checkout__form">
+        <h2>Order Information</h2>
+        <form action="http://wdd330-backend.onrender.com/checkout" method="post">
+          <h3>Customer Name</h3>
+          <label for="checkout--first-name">
+            <span>First Name*</span>
+            <input type="text" name="fname" id="checkout--first-name" placeholder="James" required/>
+          </label>
+          <label for="checkout--last-name">
+            <span>Last Name*</span>
+            <input type="text" name="lname" id="checkout--last-name" placeholder="Baxter" required/>
+          </label>
+          <h3>Address (we will assume billing and shipping are the same)</h3>
+          <label for="checkout--street-address">
+            <span>Street Address*</span>
+            <input
+              type="text"
+              name="street"
+              id="checkout--street-address"
+              placeholder="1234 Main St"
+              required
+            />
+          </label>
+          <label for="checkout--city">
+            <span>City*</span>
+            <input type="text" name="city" id="checkout--city" placeholder="Orem" required/>
+          </label>
+          <label for="checkout--state">
+            <span>State*</span>
+            <input type="text" name="state" id="checkout--state" placeholder="Utah" required/>
+          </label>
+          <label for="checkout--zip-code">
+            <span>Zip Code*</span>
+            <input
+              type="text"
+              name="zip"
+              id="checkout--zip-code"
+              pattern="^\d{5}(-\d{4})?$"
+              placeholder="84058"
+              required
+            />
+          </label>
+          <h3>Payment</h3>
+          <label for="checkout--credit-card-number">
+            <span>Credit Card Number*</span>
+            <input
+              type="text"
+              name="cardNumber"
+              id="checkout--credit-card-number"
+              pattern="^\d{13,19}$"
+              placeholder="1234567890123456"
+              required
+            />
+          </label>
+          <label for="checkout--expiration-date">
+            <span>Expiration Date*</span>
+            <input
+              type="text"
+              name="expiration"
+              id="checkout--expiration-date"
+              pattern="^(0[1-9]|1[0-2])\/\d{2}$"
+              placeholder="01/23"
+              required
+            />
+          </label>
+          <label for="checkout--security-code">
+            <span>Security Code*</span>
+            <input
+              type="text"
+              name="security-code"
+              id="checkout--security-code"
+              pattern="^\d{3,4}$"
+              placeholder="123"
+              required
+            />
+          </label>
+          <h3>Summary</h3>
+          <p class="summary__items">Subtotal:<span id="cart_subtotal"></span></p>
+          <p class="summary__items">Shipping Estimate:<span id="cart_estimate"></span></p>
+          <p class="summary__items">Tax (6%): <span id="cart_tax"></span></p>
+          <p class="summary__items">Total:<span id="cart_total"></span></p>
+          <button type="submit">Checkout</button>
+        </form>
       </section>
     </main>
     <footer id="main-footer"></footer>
