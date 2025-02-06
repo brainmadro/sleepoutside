@@ -2,9 +2,10 @@ import { getLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
+
 function formDataToJSON(formElement) {
-  const formData = new FormData(formElement),
-    convertedJSON = {};
+  const formData = new FormData(formElement);
+  const convertedJSON = {};
 
   formData.forEach(function (value, key) {
     convertedJSON[key] = value;
@@ -15,7 +16,6 @@ function formDataToJSON(formElement) {
 
 function packageItems(items) {
   const simplifiedItems = items.map((item) => {
-    console.log(item);
     return {
       id: item.Id,
       price: item.FinalPrice,
@@ -36,10 +36,12 @@ export default class CheckoutProcess {
     this.tax = 0;
     this.orderTotal = 0;
   }
+
   init() {
     this.list = getLocalStorage(this.key);
     this.calculateItemSummary();
   }
+
   calculateItemSummary() {
     const summaryElement = document.querySelector(
       this.outputSelector + " #cartTotal"
@@ -48,11 +50,13 @@ export default class CheckoutProcess {
       this.outputSelector + " #num-items"
     );
     itemNumElement.innerText = this.list.length;
+
     // calculate the total of all the items in the cart
     const amounts = this.list.map((item) => item.FinalPrice);
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
     summaryElement.innerText = "$" + this.itemTotal;
   }
+
   calculateOrdertotal() {
     this.shipping = 10 + (this.list.length - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
@@ -63,6 +67,7 @@ export default class CheckoutProcess {
     ).toFixed(2);
     this.displayOrderTotals();
   }
+
   displayOrderTotals() {
     const shipping = document.querySelector(this.outputSelector + " #shipping");
     const tax = document.querySelector(this.outputSelector + " #tax");
@@ -73,22 +78,48 @@ export default class CheckoutProcess {
     tax.innerText = "$" + this.tax;
     orderTotal.innerText = "$" + this.orderTotal;
   }
+
   async checkout() {
     const formElement = document.forms["checkout"];
-
     const json = formDataToJSON(formElement);
-    // add totals, and item details
+
+    // Add order details
     json.orderDate = new Date();
     json.orderTotal = this.orderTotal;
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
-    console.log(json);
+
+    console.log("Sending Order Data:", json);
+
     try {
-      const res = await services.checkout(json);
-      console.log(res);
+        const res = await services.checkout(json);
+        console.log("Order Successful:", res);
+
+        // ✅ Clear cart after successful checkout
+        localStorage.removeItem("so-cart");
+
+        // ✅ Redirect to success page
+        window.location.href = "./success.html"; 
     } catch (err) {
-      console.log(err);
+        console.error("Checkout Error:", err);
+
+        // ✅ FIX: Convert the error object to a readable string
+        const errorElement = document.querySelector("#checkoutError");
+        if (errorElement) {
+            let errorMessage = "An error occurred during checkout.";
+
+            if (err.message && typeof err.message === "object") {
+                // Convert error object into readable list
+                errorMessage = Object.entries(err.message)
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join("<br>");
+            } else {
+                errorMessage = err.message;
+            }
+
+            errorElement.innerHTML = `<p style="color:red;">${errorMessage}</p>`;
+        }
     }
-  }
+}
 }
