@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -8,7 +8,6 @@ function productDetailsTemplate(product) {
       src="${product.Images.PrimaryLarge}"
       alt="${product.NameWithoutBrand}"
     />
-    ${product.Discount ? "<p class='product-card__discount'>" + product.Discount + "%</p>" : '' }
     <p class="product-card__price">$${product.FinalPrice}</p>
     <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
@@ -27,25 +26,24 @@ export default class ProductDetails {
   }
   async init() {
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
+    this.product = await this.dataSource.findProductById(this.productId);
     // once we have the product details we can render out the HTML
+    this.renderProductDetails("main");
     // once the HTML is rendered we can add a listener to Add to Cart button
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
-    this.product = await this.dataSource.findProductById(this.productId);
-    this.renderProductDetails("main");
-    
-    document.getElementById("addToCart")
+    document
+      .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
   }
   addToCart() {
-    const cartItems = getLocalStorage("so-cart") || [];
-    const inCart = cartItems.some((item) => item.Id === this.product.Id);
-    if (inCart) {
-      cartItems[cartItems.findIndex((item) => item.Id === this.product.Id)].Quantity += 1;
-    } else {
-      this.product.Quantity = 1;
-      cartItems.push(this.product);
+    let cartContents = getLocalStorage("so-cart");
+    //check to see if there was anything there
+    if (!cartContents) {
+      cartContents = [];
     }
-    setLocalStorage("so-cart", cartItems);
+    // then add the current product to the list
+    cartContents.push(this.product);
+    setLocalStorage("so-cart", cartContents);
   }
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
@@ -55,4 +53,3 @@ export default class ProductDetails {
     );
   }
 }
-

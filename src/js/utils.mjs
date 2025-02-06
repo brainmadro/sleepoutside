@@ -2,24 +2,12 @@
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
+// or a more concise version if you are into that sort of thing:
+// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
+// retrieve data from localstorage
 export function getLocalStorage(key) {
-  const data = localStorage.getItem(key);
-  if (data) {
-    try {
-      const parsedData = JSON.parse(data);
-      if (Array.isArray(parsedData)) {
-        return parsedData;
-      } else {
-        console.warn(`${key} Error!!!`);
-        return [];
-      }
-    } catch (e) {
-      console.error(`Error parsed ${key}:`, e);
-      return [];
-    }
-  }
-  return [];
+  return JSON.parse(localStorage.getItem(key));
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
@@ -50,8 +38,10 @@ export function renderListWithTemplate(
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
+// function to take an optional object and a template and insert the objects as HTML into the DOM
 export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.insertAdjacentHTML("afterbegin", template);
+  //if there is a callback...call it and pass data
   if (callback) {
     callback(data);
   }
@@ -63,11 +53,12 @@ async function loadTemplate(path) {
   return template;
 }
 
+// function to dynamically load the header and footer into a page
 export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate("../partials/header.html");
   const headerElement = document.querySelector("#main-header");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
   const footerElement = document.querySelector("#main-footer");
-  const headerTemplate = await loadTemplate("/partials/header.html");
-  const footerTemplate = await loadTemplate("/partials/footer.html");
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
