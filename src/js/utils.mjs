@@ -81,6 +81,17 @@ export async function loadHeaderFooter() {
   renderWithTemplate(footerTemplate, footerElement);
 }
 
+export function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {

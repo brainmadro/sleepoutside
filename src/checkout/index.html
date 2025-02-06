@@ -17,7 +17,7 @@
       <section class="checkout__form">
         <h2>Order Information</h2>
         <form action="http://wdd330-backend.onrender.com/checkout" method="post">
-          <h4>Customer Name</h4>
+          <h3>Customer Name</h3>
           <label for="checkout--first-name">
             <span>First Name*</span>
             <input type="text" name="fname" id="checkout--first-name" placeholder="James" required/>
@@ -26,12 +26,12 @@
             <span>Last Name*</span>
             <input type="text" name="lname" id="checkout--last-name" placeholder="Baxter" required/>
           </label>
-          <h4>Address (we will assume billing and shipping are the same)</h4>
+          <h3>Address (we will assume billing and shipping are the same)</h3>
           <label for="checkout--street-address">
             <span>Street Address*</span>
             <input
               type="text"
-              name="address"
+              name="street"
               id="checkout--street-address"
               placeholder="1234 Main St"
               required
@@ -49,14 +49,14 @@
             <span>Zip Code*</span>
             <input
               type="text"
-              name="zip-code"
+              name="zip"
               id="checkout--zip-code"
               pattern="^\d{5}(-\d{4})?$"
               placeholder="84058"
               required
             />
           </label>
-          <h4>Payment</h4>
+          <h3>Payment</h3>
           <label for="checkout--credit-card-number">
             <span>Credit Card Number*</span>
             <input
@@ -90,7 +90,7 @@
               required
             />
           </label>
-          <h4>Summary</h4>
+          <h3>Summary</h3>
           <p class="summary__items">Subtotal:<span id="cart_subtotal"></span></p>
           <p class="summary__items">Shipping Estimate:<span id="cart_estimate"></span></p>
           <p class="summary__items">Tax (6%): <span id="cart_tax"></span></p>

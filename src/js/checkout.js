@@ -3,10 +3,10 @@ import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
 
+const zipCodeElement = document.querySelector("#checkout--zip-code");
+const formElement = document.querySelector("form");
 const checkout = new CheckoutProcess("so-cart", "#cart_total");
 checkout.init();
-
-const zipCodeElement = document.querySelector("#checkout--zip-code");
 
 zipCodeElement.addEventListener("input", (event) => {
 	const zipCode = event.target.value;
@@ -14,3 +14,8 @@ zipCodeElement.addEventListener("input", (event) => {
 		checkout.calculateOrdertotal();
 	}
 });
+
+formElement.addEventListener("submit", (event) => {
+	event.preventDefault();
+	checkout.checkout(event.target)
+})
