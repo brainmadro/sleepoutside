@@ -249,6 +249,13 @@ button {
   grid-row: 2;
   grid-column: 3;
 }
+
+.cart_header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .checkout__form form {
   display: flex;
   flex-direction: column;
@@ -260,7 +267,7 @@ button {
 
 .summary__items {
   color: var(--secondary-color);
-  font-size: var(--small-font);
+  margin: 0;
 }
 
 @media screen and (min-width: 500px) {
