@@ -8,14 +8,19 @@ const formElement = document.querySelector("form");
 const checkout = new CheckoutProcess("so-cart", "#cart_total");
 checkout.init();
 
-zipCodeElement.addEventListener("input", (event) => {
-	const zipCode = event.target.value;
-	if (zipCode.length === 5) {
-		checkout.calculateOrdertotal();
-	}
-});
+if (zipCodeElement) {
+	zipCodeElement.addEventListener("input", (event) => {
+		const zipCode = event.target.value;
+		if (zipCode.length === 5) {
+			checkout.calculateOrdertotal();
+		}
+	});
+}
 
-formElement.addEventListener("submit", (event) => {
-	event.preventDefault();
-	checkout.checkout(event.target)
-})
+if (formElement) {
+	formElement.addEventListener("submit", (event) => {
+		event.preventDefault();
+		checkout.checkout(event.target)
+	})
+}
+

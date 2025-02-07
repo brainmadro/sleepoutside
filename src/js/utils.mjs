@@ -92,6 +92,24 @@ export function formDataToJSON(formElement) {
   return convertedJSON;
 }
 
+export function alertMessage(message, scroll=true) {
+  const alert = document.createElement('div');
+  const main = document.querySelector('main');
+  
+  alert.classList.add('alert');
+  alert.innerHTML = `<span>${Object.values(message.message)[0]}</span><span>X</span>`
+  
+  alert.addEventListener('click', function(e) {
+    if(e.target.innerText == 'X') {
+      main.removeChild(this);
+    }
+  })
+  
+  main.prepend(alert);
+  
+  if(scroll) window.scrollTo(0,0);
+}
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {

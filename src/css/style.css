@@ -102,6 +102,22 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+.alert {
+  background-color: #e13f3fd6;
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  margin: .8em 0;
+  padding: 1em;
+}
+
+.alert span:last-child:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }

@@ -1,5 +1,5 @@
 import ExternalServices from "./ExternalServices.mjs";
-import { formDataToJSON, getLocalStorage } from "./utils.mjs";
+import { alertMessage, formDataToJSON, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
 function packageItems(items) {
@@ -71,6 +71,13 @@ export default class CheckoutProcess {
 
     // call the checkout method in our ExternalServices module and send it our data object.
     const externalServices = new ExternalServices();
-    externalServices.checkout(payload)
+
+    try {
+      await externalServices.checkout(payload)
+      setLocalStorage("so-cart", []);
+      window.location.replace("/checkout/success.html");      
+    } catch (err) {
+      alertMessage(err);
+    }
   }
 }
