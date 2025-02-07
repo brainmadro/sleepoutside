@@ -79,6 +79,18 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+
+  showCartCounter();
+}
+
+export function showCartCounter() {
+  const cartItemsCounter = document.querySelector("#cart-items-counter");
+  const cartItems = getLocalStorage("so-cart") || [];
+
+  if (cartItems.length > 0) {
+    cartItemsCounter.classList.remove('hidden');
+    cartItemsCounter.textContent = cartItems.length
+  }
 }
 
 export function formDataToJSON(formElement) {

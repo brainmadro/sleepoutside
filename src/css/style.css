@@ -41,6 +41,9 @@ label[for^="checkout--"] {
   grid-template-columns: repeat(2, 1fr);
   margin: 1em 0;
 }
+.hidden {
+  display: none;
+}
 .logo {
   line-height: 60px;
   width: 245px;
@@ -119,6 +122,19 @@ button {
 }
 .cart:hover svg {
   fill: gray;
+}
+.cart span {
+  align-items: center;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  font-size: var(--small-font);
+  height: 1em;
+  justify-content: center;
+  padding: .66em;
+  position: absolute;
+  right: -.3em;
+  width: 1em;
 }
 
 /* End cart icon styles */
